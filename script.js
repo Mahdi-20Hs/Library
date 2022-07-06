@@ -1,9 +1,15 @@
-const addBtn = document.querySelector('.add-btn');
+const addBtn = document.querySelector('button.add');
 const formContainer = document.querySelector('.form-container');
 const form = document.querySelector('.book-form');
 const formBtn = document.querySelector('.form-btn');
 const main = document.querySelector('.main');
-const books = [];
+const sideTitle = document.querySelector('.side .title span');
+const sideAuthor = document.querySelector('.side .author span');
+const sidePages = document.querySelector('.side .pages span');
+const sideState = document.querySelector('.side .state span');
+
+let booksObjects = [];
+let booksElements = [];
 
 function showForm(){
   formContainer.setAttribute('style', 'visibility:visible');
@@ -20,7 +26,7 @@ function book(title, author, pages, state){
 }
 
 function addBookToArr(book){
-  books.push(book);
+  booksObjects.push(book);
 }
 
 function createElement(book){
@@ -28,23 +34,48 @@ function createElement(book){
   div.classList.add('card');
   div.textContent = book.title;
   main.appendChild(div);
+  booksElements.push(div);
+}
+
+function setSideInfo(index){
+  sideTitle.textContent = booksObjects[index].title;
+  sideAuthor.textContent = booksObjects[index].author;
+  sidePages.textContent = booksObjects[index].pages;
+
+  if(booksObjects[index].state === true){
+    sideState.textContent = 'Read';
+  }else{
+    sideState.textContent = 'Not Read';
+  }
+}
+
+function renederBooks(){
+  main.innerHTML = "";
+  booksElements = [];
+
+  for(let i = 0; i < booksObjects.length; i++){
+    createElement(booksObjects[i]);
+  }
 }
 
 function addBook(){
   let title = document.querySelector('#title').value;
   let author = document.querySelector('#author').value;
   let pages = document.querySelector('#pages').value;
-  let state = document.querySelector('#state').value;
+  let state = document.querySelector('#state').checked;
 
   let item = new book(title, author, pages, state);
   addBookToArr(item);
 
-  main.innerHTML = "";
+  renederBooks();
 
-  for(let i = 0; i < books.length; i++){
-    createElement(books[i]);
-  }
-  main.appendChild(addBtn);
+  setSideInfo(booksObjects.length - 1)
+  booksElements.forEach((element) => {
+    element.addEventListener('click', () => {
+      let index = booksElements.indexOf(element);
+      setSideInfo(index);
+    })
+  });
 }
 
 function submitInfo(){
@@ -52,4 +83,5 @@ function submitInfo(){
   formContainer.setAttribute('style', 'visibility:hidden');
   form.setAttribute('style', 'transform:scale(0)')
 }
-formBtn.addEventListener('click', submitInfo)
+formBtn.addEventListener('click', submitInfo);
+

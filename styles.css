@@ -8,7 +8,7 @@
 body{
   height: 100vh;
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 4fr 1.5fr;
   grid-template-rows: 1fr 4fr;
   background-color: #e6ebe0;
   position: relative;
@@ -38,8 +38,10 @@ body{
   grid-auto-rows: 150px;
   gap: 30px;
   padding: 30px;
+  overflow-y: scroll;
 }
-.main .add-btn, .main .card{
+
+.main .card{
   background-color: white;
   border: none;
   border-radius: 20px;
@@ -50,41 +52,61 @@ body{
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.204);
   font-size: 1.2rem;
 }
-.main .plus-icon{
-  width: 80px;
-  height: auto;
-  transition-duration: 0.2s;
-  filter: invert(94%) sepia(0%) saturate(0%) hue-rotate(151deg) brightness(84%) contrast(87%);
-}
 
-.book-info{
+.side{
   grid-row: 2/-1;
   grid-column: 2/-1;
   background-color: white;
   box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.204);
-  position: fixed;
-  right: 0px;
-  bottom: 0px;
   z-index: 90;
-  width: 25%;
-  height: 80%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.side-top{
+  width: 80%;
+  justify-self: center;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px;
+  justify-content: center;
+  gap: 30px;
 }
-.book-info h2{
+.side-top h2{
   font-size: 1.2rem;
 }
 
-.book-info button{
-  width: 100px;
-  height: auto;
+.side-bottom{
+  display: flex;
+  flex-direction: column;
+}
+.side-bottom button{
+  width: 100%;
+  height: calc(100% / 3);
   padding: 10px;
-  font-size: 1.2rem;
+  font-size: 2rem;
   cursor: pointer;
+  color: white;
+  border: none;
+  transition-duration: 0.2s;
+}
+.side-bottom .add{
+  background-color: #5762d5;
+}
+.side-bottom .add:hover{
+  background-color: #40489e;
+}
+.side-bottom .remove{
+  background-color: #FE5F55;
+}
+.side-bottom .remove:hover{
+  background-color: #d65249;
+}
+.side-bottom .edit{
+  background-color: #679436;
+}
+.side-bottom .edit:hover{
+  background-color: #486826;
 }
 .form-container{
   width: 100%;
