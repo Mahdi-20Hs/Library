@@ -13,10 +13,11 @@
     <h1>Library</h1>
   </div>
   <div class="main">
-    <div class="add-btn">
+    <button class="add-btn">
       <img src="./assets/plus-svgrepo-com (1).svg" class="plus-icon"></img>
-    </div>
+    </button>
   </div>
+
   <div class="book-info">
     <h2 class="title">Title: <span></span></h2>
     <h2 class="author">Author: <span></span></h2>
@@ -24,6 +25,20 @@
     <h2 class="state">State: <span></span></h2>
     <button class="read">Edit</button>
     <button class="remove">Remove</button>
+  </div>
+
+  <div class="form-container">
+    <div class="book-form">
+      <h1>Add a new book</h1>
+      <input type="text" name="title" id="title" placeholder="Title">
+      <input type="text" name="author" id="author" placeholder="Author">
+      <input type="number" name="pages" id="pages" min="10" max="1000" placeholder="Pages">
+      <div>
+        <label for="state">Did yo read the book?</label>
+        <input type="checkbox" name="state" id="state">
+      </div>
+      <button class="form-btn">Add</button>
+    </div>
   </div>
   
 </body>

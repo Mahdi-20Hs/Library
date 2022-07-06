@@ -8,9 +8,10 @@
 body{
   height: 100vh;
   display: grid;
-  grid-template-columns: 4fr 1.5fr;
+  grid-template-columns: 4fr 1fr;
   grid-template-rows: 1fr 4fr;
   background-color: #e6ebe0;
+  position: relative;
 }
 .header{
   grid-row: 1/2;
@@ -18,7 +19,7 @@ body{
   background-color: #5762d5;
   color: white;
   z-index: 100;
-  box-shadow: 3px 0px 6px rgba(0, 0, 0, 0.404);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.204);
   display: flex;
   justify-content: start;
   align-items: center;
@@ -38,35 +39,33 @@ body{
   gap: 30px;
   padding: 30px;
 }
-.main .add-btn{
+.main .add-btn, .main .card{
   background-color: white;
+  border: none;
   border-radius: 20px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.404);
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.204);
+  font-size: 1.2rem;
 }
 .main .plus-icon{
   width: 80px;
   height: auto;
-  filter: invert(94%) sepia(0%) saturate(0%) hue-rotate(151deg) brightness(84%) contrast(87%);
   transition-duration: 0.2s;
+  filter: invert(94%) sepia(0%) saturate(0%) hue-rotate(151deg) brightness(84%) contrast(87%);
 }
-.main .plus-icon:hover{
-  cursor: pointer;
-  filter: invert(72%) sepia(3%) saturate(13%) hue-rotate(59deg) brightness(89%) contrast(99%);
-}
-
 
 .book-info{
   grid-row: 2/-1;
   grid-column: 2/-1;
   background-color: white;
-  box-shadow: -2px 0px 3px rgba(0, 0, 0, 0.404);
+  box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.204);
   position: fixed;
   right: 0px;
   bottom: 0px;
-  z-index: 100;
+  z-index: 90;
   width: 25%;
   height: 80%;
   display: flex;
@@ -85,4 +84,57 @@ body{
   height: auto;
   padding: 10px;
   font-size: 1.2rem;
+  cursor: pointer;
+}
+.form-container{
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.39);
+  z-index: 120;
+  position: absolute;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ .book-form{
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  gap: 20px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.204);
+  transform: scale(0);
+  transition-duration: 0.2s;
+}
+.book-form h1{
+  font-size: 2rem;
+}
+.book-form > input, .book-form div, .book-form button{
+  width: 100%;
+  padding: 2px 4px;
+  font-size: 1.2rem;
+}
+.book-form > input{
+  border: 1px solid rgb(138, 138, 138);
+  outline: none;
+  border-radius: 2px;
+}
+.book-form div{
+  display: flex;
+  justify-content: center;
+  gap:30px;
+}
+.book-form div input{
+  width: 25px;
+  cursor: pointer;
+}
+.book-form button{
+  cursor: pointer;
+  background-color:#5762d5 ;
+  color: white;
+  border: none;
+  border-radius: 2px;
 }
