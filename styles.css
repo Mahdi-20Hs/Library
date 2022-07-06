@@ -1,0 +1,37 @@
+*{
+  padding: 0%;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 4fr 1.5fr;
+  grid-template-rows: 1fr 4fr;
+}
+.header{
+  grid-row: 1/2;
+  grid-column: 1/-1;
+  background-color: white;
+  z-index: 100;
+  box-shadow: 3px 0px 6px black;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.header h1{
+  margin-left: 20px;
+  font-size: 3rem;
+}
+
+.main{
+  grid-row: 2/-1;
+  grid-column: 1/2;
+  background-color: lightcoral;
+}
+
+.book-info{
+  grid-row: 2/-1;
+  grid-column: 2/-1;
+  background-color: lightgreen;
+}
