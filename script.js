@@ -1,4 +1,5 @@
 const addBtn = document.querySelector('button.add');
+const removeBtn = document.querySelector('button.remove');
 const formContainer = document.querySelector('.form-container');
 const form = document.querySelector('.book-form');
 const formBtn = document.querySelector('.form-btn');
@@ -8,8 +9,7 @@ const sideAuthor = document.querySelector('.side .author span');
 const sidePages = document.querySelector('.side .pages span');
 const sideState = document.querySelector('.side .state span');
 
-let booksObjects = [];
-let booksElements = [];
+
 
 function showForm(){
   formContainer.setAttribute('style', 'visibility:visible');
@@ -17,71 +17,93 @@ function showForm(){
 }
 
 addBtn.addEventListener('click', showForm)
+let booksObjects = [];
+let booksElements = [];
+let index;
 
-function book(title, author, pages, state){
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.state = state
-}
-
-function addBookToArr(book){
-  booksObjects.push(book);
-}
-
-function createElement(book){
-  let div = document.createElement('div');
-  div.classList.add('card');
-  div.textContent = book.title;
-  main.appendChild(div);
-  booksElements.push(div);
-}
-
-function setSideInfo(index){
-  sideTitle.textContent = booksObjects[index].title;
-  sideAuthor.textContent = booksObjects[index].author;
-  sidePages.textContent = booksObjects[index].pages;
-
-  if(booksObjects[index].state === true){
-    sideState.textContent = 'Read';
-  }else{
-    sideState.textContent = 'Not Read';
-  }
-}
-
-function renederBooks(){
-  main.innerHTML = "";
+function createElement(){
+  main.innerHTML = '';
   booksElements = [];
-
   for(let i = 0; i < booksObjects.length; i++){
-    createElement(booksObjects[i]);
+    let div = document.createElement('div');
+    div.classList.add('card');
+    div.textContent = booksObjects[i].title;
+    if(i === booksObjects.length - 1){
+      div.setAttribute('style', 'border: 2px solid black')
+    }
+    main.appendChild(div);
+    booksElements.push(div)
   }
 }
-
-function addBook(){
-  let title = document.querySelector('#title').value;
-  let author = document.querySelector('#author').value;
-  let pages = document.querySelector('#pages').value;
-  let state = document.querySelector('#state').checked;
-
-  let item = new book(title, author, pages, state);
-  addBookToArr(item);
-
-  renederBooks();
-
-  setSideInfo(booksObjects.length - 1)
-  booksElements.forEach((element) => {
-    element.addEventListener('click', () => {
-      let index = booksElements.indexOf(element);
-      setSideInfo(index);
-    })
-  });
+function setSideInfo(book){
+  if(book){
+    sideTitle.textContent = book.title;
+    sideAuthor.textContent = book.author;
+    sidePages.textContent = book.pages;
+    sideState.textContent = book.state;
+  }else{
+    sideTitle.textContent = '';
+    sideAuthor.textContent = '';
+    sidePages.textContent = '';
+    sideState.textContent = '';
+  }
 }
+formBtn.addEventListener('click', () => {
 
-function submitInfo(){
-  addBook();
+  function newBook(){
+    this.title = document.querySelector('#title').value;
+    this.author = document.querySelector('#author').value;
+    this.pages = document.querySelector('#pages').value;
+    this.state = (document.querySelector('#state').checked)?'Read': 'Not read';
+  }
+
+  let book = new newBook();
+
+  
+  booksObjects.push(book);
+
+  index = booksObjects.length - 1;
+
+
+  
+  createElement()
+
+  setSideInfo(book);
+
   formContainer.setAttribute('style', 'visibility:hidden');
   form.setAttribute('style', 'transform:scale(0)')
+
+  selectBook();
+  
+})
+
+function selectBook(){
+  booksElements.forEach((element) => {
+    element.addEventListener('click', () => {
+      
+      for(let i = 0; i < booksElements.length; i++){
+        booksElements[i].setAttribute('style', 'border:none');
+      }
+      element.setAttribute('style', 'border:2px solid black');
+
+      index = booksElements.indexOf(element);
+
+      sideTitle.textContent = booksObjects[index].title;
+      sideAuthor.textContent = booksObjects[index].author;
+      sidePages.textContent = booksObjects[index].pages;
+      sideState.textContent = booksObjects[index].state;
+
+
+    })
+  })
 }
-formBtn.addEventListener('click', submitInfo);
+
+
+
+removeBtn.addEventListener('click', () => {
+  booksObjects.splice(index, 1);
+  createElement();
+  setSideInfo();
+  selectBook()
+})
 
