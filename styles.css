@@ -26,6 +26,17 @@ body{
   display: flex;
   justify-content: start;
   align-items: center;
+  position: relative;
+}
+.header a{
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+  color: #706f6f;
+  background-color: rgba(0, 0, 0, 0.644);
+  padding: 2px 4px;
 }
 .header h1{
   margin-left: 20px;
