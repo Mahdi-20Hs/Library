@@ -8,75 +8,48 @@ const main = document.querySelector('.main');
 const sideTitle = document.querySelector('.side .title span');
 const sideAuthor = document.querySelector('.side .author span');
 const sidePages = document.querySelector('.side .pages span');
-const sideState = document.querySelector('.side .state span');
+const sideStatus = document.querySelector('.side .status span');
 
-
-
-function showForm(){
-  formContainer.setAttribute('style', 'visibility:visible');
-  form.setAttribute('style', 'transform:scale(1)')
-}
-
-addBtn.addEventListener('click', showForm)
 let booksObjects = [];
 let booksElements = [];
-let index;
+let bookIndex;
+
+function displayForm(visibility, scale){
+  formContainer.setAttribute('style', `visibility:${visibility}`);
+  form.setAttribute('style', `transform:scale(${scale})`)
+}
 
 function createElement(){
   main.innerHTML = '';
   booksElements = [];
+
   for(let i = 0; i < booksObjects.length; i++){
+
     let div = document.createElement('div');
     div.classList.add('card');
     div.textContent = booksObjects[i].title;
     if(i === booksObjects.length - 1){
-      div.setAttribute('style', 'border: 2px solid black')
+      div.setAttribute('style', 'border: 3px solid #a3282c');
     }
+    
     main.appendChild(div);
-    booksElements.push(div)
+    booksElements.push(div);
   }
 }
+
 function setSideInfo(book){
   if(book){
     sideTitle.textContent = book.title;
     sideAuthor.textContent = book.author;
     sidePages.textContent = book.pages;
-    sideState.textContent = book.state;
+    sideStatus.textContent = book.status;
   }else{
     sideTitle.textContent = '';
     sideAuthor.textContent = '';
     sidePages.textContent = '';
-    sideState.textContent = '';
+    sideStatus.textContent = '';
   }
 }
-formBtn.addEventListener('click', () => {
-
-  function newBook(){
-    this.title = document.querySelector('#title').value;
-    this.author = document.querySelector('#author').value;
-    this.pages = document.querySelector('#pages').value;
-    this.state = (document.querySelector('#state').checked)?'Read': 'Not read';
-  }
-
-  let book = new newBook();
-
-  
-  booksObjects.push(book);
-
-  index = booksObjects.length - 1;
-
-
-  
-  createElement()
-
-  setSideInfo(book);
-
-  formContainer.setAttribute('style', 'visibility:hidden');
-  form.setAttribute('style', 'transform:scale(0)')
-
-  selectBook();
-  
-})
 
 function selectBook(){
   booksElements.forEach((element) => {
@@ -85,37 +58,58 @@ function selectBook(){
       for(let i = 0; i < booksElements.length; i++){
         booksElements[i].setAttribute('style', 'border:none');
       }
-      element.setAttribute('style', 'border:2px solid black');
+      element.setAttribute('style', 'border:3px solid #a3282c');
   
-      index = booksElements.indexOf(element);
-      
-      sideTitle.textContent = booksObjects[index].title;
-      sideAuthor.textContent = booksObjects[index].author;
-      sidePages.textContent = booksObjects[index].pages;
-      sideState.textContent = booksObjects[index].state;
-
+      bookIndex = booksElements.indexOf(element);
+      sideTitle.textContent = booksObjects[bookIndex].title;
+      sideAuthor.textContent = booksObjects[bookIndex].author;
+      sidePages.textContent = booksObjects[bookIndex].pages;
+      sideStatus.textContent = booksObjects[bookIndex].status;
 
     })
   })
 }
 
 
+formBtn.addEventListener('click', () => {
+
+  function newBook(){
+    this.title = document.querySelector('#title').value;
+    this.author = document.querySelector('#author').value;
+    this.pages = document.querySelector('#pages').value;
+    this.status = (document.querySelector('#status').checked)?'Read': 'Not read';
+  }
+  
+  let book = new newBook();
+  booksObjects.push(book);
+  bookIndex = booksObjects.length - 1;
+
+  createElement();
+  setSideInfo(book);
+  displayForm('hidden', 0);
+  selectBook();
+  
+})
+
+addBtn.addEventListener('click', () => {
+  displayForm('visible', 1)
+})
 
 removeBtn.addEventListener('click', () => {
-  booksObjects.splice(index, 1);
+  booksObjects.splice(bookIndex, 1);
   createElement();
   setSideInfo();
-  selectBook()
+  selectBook();
 })
 
 changeBtn.addEventListener('click', () => {
-  if(index !== undefined){
-    if(booksObjects[index].state === 'Read'){
-      booksObjects[index].state = 'Not read';
-      setSideInfo(booksObjects[index])
-    }else if(booksObjects[index].state === 'Not read'){
-      booksObjects[index].state = 'Read';
-      setSideInfo(booksObjects[index])
+  if(bookIndex !== undefined){
+    if(booksObjects[bookIndex].status === 'Read'){
+      booksObjects[bookIndex].status = 'Not read';
+      setSideInfo(booksObjects[bookIndex])
+    }else{
+      booksObjects[bookIndex].status = 'Read';
+      setSideInfo(booksObjects[bookIndex])
     }
   }
 })

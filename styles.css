@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rosarivo&display=swap');
 *{
   padding: 0%;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Rosarivo', serif;
 }
 body{
   height: 100vh;
@@ -16,7 +16,10 @@ body{
 .header{
   grid-row: 1/2;
   grid-column: 1/-1;
-  background-color: #5762d5;
+  background-blend-mode:color;
+  background-color: rgba(0, 0, 0, 0.336);
+  background-image: url(./assets/pexels-suzy-hazelwood-1560093.jpg);
+  background-size: cover;
   color: white;
   z-index: 100;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.204);
@@ -42,15 +45,15 @@ body{
 }
 
 .main .card{
+  text-align: center;
   background-color: white;
   border: none;
-  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.204);
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .side{
@@ -65,7 +68,8 @@ body{
 }
 
 .side-top{
-  width: 80%;
+  padding: 20px;
+  width: 100%;
   justify-self: center;
   display: flex;
   flex-direction: column;
@@ -74,6 +78,10 @@ body{
 }
 .side-top h2{
   font-size: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-items: start;
+  align-items:baseline;
 }
 
 .side-bottom{
@@ -85,28 +93,28 @@ body{
   height: calc(100% / 3);
   padding: 10px;
   font-size: 2rem;
-  cursor: pointer;
   color: white;
   border: none;
   transition-duration: 0.2s;
+  cursor: pointer;
 }
 .side-bottom .add{
-  background-color: #5762d5;
+  background-color: #f8a03c;
 }
 .side-bottom .add:hover{
-  background-color: #40489e;
+  background-color: #db8e35;
 }
 .side-bottom .remove{
-  background-color: #FE5F55;
+  background-color: #a3282c;
 }
 .side-bottom .remove:hover{
-  background-color: #d65249;
+  background-color: #862124;
 }
 .side-bottom .change{
-  background-color: #679436;
+  background-color: #141313;
 }
 .side-bottom .change:hover{
-  background-color: #486826;
+  background-color: #000000;
 }
 .form-container{
   width: 100%;
@@ -126,7 +134,6 @@ body{
   flex-direction: column;
   align-items:center;
   gap: 20px;
-  border-radius: 20px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.204);
   transform: scale(0);
   transition-duration: 0.2s;
@@ -140,9 +147,8 @@ body{
   font-size: 1.2rem;
 }
 .book-form > input{
-  border: 1px solid rgb(138, 138, 138);
+  border: 1px solid #706f6f;
   outline: none;
-  border-radius: 2px;
 }
 .book-form div{
   display: flex;
@@ -153,10 +159,10 @@ body{
   width: 25px;
   cursor: pointer;
 }
+
 .book-form button{
   cursor: pointer;
-  background-color:#5762d5 ;
+  background-color:#a3282c ;
   color: white;
   border: none;
-  border-radius: 2px;
 }
