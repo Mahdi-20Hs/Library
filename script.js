@@ -1,5 +1,6 @@
 const addBtn = document.querySelector('button.add');
 const removeBtn = document.querySelector('button.remove');
+const changeBtn = document.querySelector('button.change');
 const formContainer = document.querySelector('.form-container');
 const form = document.querySelector('.book-form');
 const formBtn = document.querySelector('.form-btn');
@@ -85,9 +86,9 @@ function selectBook(){
         booksElements[i].setAttribute('style', 'border:none');
       }
       element.setAttribute('style', 'border:2px solid black');
-
+  
       index = booksElements.indexOf(element);
-
+      
       sideTitle.textContent = booksObjects[index].title;
       sideAuthor.textContent = booksObjects[index].author;
       sidePages.textContent = booksObjects[index].pages;
@@ -107,3 +108,14 @@ removeBtn.addEventListener('click', () => {
   selectBook()
 })
 
+changeBtn.addEventListener('click', () => {
+  if(index !== undefined){
+    if(booksObjects[index].state === 'Read'){
+      booksObjects[index].state = 'Not read';
+      setSideInfo(booksObjects[index])
+    }else if(booksObjects[index].state === 'Not read'){
+      booksObjects[index].state = 'Read';
+      setSideInfo(booksObjects[index])
+    }
+  }
+})

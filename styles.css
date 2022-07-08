@@ -102,10 +102,10 @@ body{
 .side-bottom .remove:hover{
   background-color: #d65249;
 }
-.side-bottom .edit{
+.side-bottom .change{
   background-color: #679436;
 }
-.side-bottom .edit:hover{
+.side-bottom .change:hover{
   background-color: #486826;
 }
 .form-container{
