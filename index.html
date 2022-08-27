@@ -34,14 +34,23 @@
   <div class="form-container">
     <div class="book-form">
       <h1>Add a new book</h1>
-      <input type="text" name="title" id="title" placeholder="Title">
-      <input type="text" name="author" id="author" placeholder="Author">
-      <input type="number" name="pages" id="pages" min="10" max="1000" placeholder="Pages">
-      <div>
+      <div class="input-container">
+        <input type="text" name="title" id="title" class="inputs" placeholder="Title" pattern="[a-zA-Z]{5,20}" required>
+        <div class="error"></div>
+      </div>
+      <div class="input-container">
+        <input type="text" name="author" id="author" class="inputs" placeholder="Author" required>
+        <div class="error"></div>
+      </div>
+      <div class="input-container">
+        <input type="number" name="pages" id="pages" class="inputs" min="10" max="1000" placeholder="Pages" required>
+        <div class="error"></div>
+      </div>
+      <div class="checkbox-container">
         <label for="status">Did you read the book?</label>
         <input type="checkbox" name="status" id="status">
       </div>
-      <button class="form-btn">Add</button>
+      <button class="form-btn" type="submit">Add</button>
     </div>
   </div>
   

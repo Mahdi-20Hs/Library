@@ -156,21 +156,34 @@ body{
 .book-form h1{
   font-size: 2rem;
 }
-.book-form > input, .book-form div, .book-form button{
+.book-form > .input-container{
+  width: 100%;
+}
+.input-container > input{
+  width: 100%;
+  border: 1px solid #706f6f;
+  outline: none;
+}
+.input-container > .error{
+  width: 100%;
+  padding: 0;
+  background-color: red;
+  color: white;
+}
+.error.active{
+  padding: 2px;
+}
+.input-container > input, .checkbox-container, .book-form button{
   width: 100%;
   padding: 2px 4px;
   font-size: 1.2rem;
 }
-.book-form > input{
-  border: 1px solid #706f6f;
-  outline: none;
-}
-.book-form div{
+.checkbox-container{
   display: flex;
   justify-content: center;
   gap:30px;
 }
-.book-form div input{
+.checkbox-container input{
   width: 25px;
   cursor: pointer;
 }

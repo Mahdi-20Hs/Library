@@ -1,20 +1,63 @@
 const library = [];
 const booksElements = [];
 
+function showError(input){
+  const titleInput = document.querySelector('#title');
+  const authorInput = document.querySelector('#author');
+  const pagesInput = document.querySelector('#pages');
+  
+  if(input.validity.valueMissing){
+    input.nextElementSibling.textContent = 'this field is required';
+  }else if(input.validity.patternMismatch){
+    if(input === pagesInput){
+      input.nextElementSibling.textContent = 'this field should contain only numbers';
+    }else{
+      input.nextElementSibling.textContent = 'this field should contain only 5-20 letters'
+    }
+  }
+
+  if(input === pagesInput){
+    if(input.validity.rangeOverflow){
+      input.nextElementSibling.textContent = 'pages number can\'t be greater than 1000';
+    }else if(input.validity.rangeUnderflow){
+      input.nextElementSibling.textContent = 'pages number can\'t be lower than 10';
+    }
+  }
+  input.nextElementSibling.classList.add = 'active';
+}
 
 const bindEvents = (function(){
   const addBtn = document.querySelector('.add');
   const removeBtn = document.querySelector('.remove');
   const formBtn = document.querySelector('.form-btn');
   const changeStatusBtn = document.querySelector('.changeStatus');
+  const inputs = document.querySelectorAll('.inputs');
   
   addBtn.addEventListener('click', () => {
     form.showForm();
   });
-  
+
   formBtn.addEventListener('click', () => {
-    form.hideForm();
-    add();
+    let holder = true;
+    inputs.forEach((input) => {
+      if(!input.validity.valid){
+        holder = false;
+        showError(input);
+      }
+    })
+    if(holder === true){
+      form.hideForm();
+      add();
+    }
+  });
+
+  inputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      if(input.validity.valid){
+        input.nextElementSibling.textContent = '';
+        input.nextElementSibling.classList.remove = 'active';
+      }
+    })
   })
 
   removeBtn.addEventListener('click', () => {
