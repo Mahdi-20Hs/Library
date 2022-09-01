@@ -143,6 +143,7 @@ body{
   align-items: center;
 }
  .book-form{
+  width: 20em;
   background-color: white;
   padding: 20px;
   display: flex;
@@ -166,12 +167,10 @@ body{
 }
 .input-container > .error{
   width: 100%;
-  padding: 0;
-  background-color: red;
-  color: white;
+  padding: 5px;
+  color: red;
 }
 .error.active{
-  padding: 2px;
 }
 .input-container > input, .checkbox-container, .book-form button{
   width: 100%;
